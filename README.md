@@ -35,14 +35,19 @@ AWS | Terraform | Linux | Apache
 **HOW IT WORKS**
 
 Terraform 
+
 ↓
 AWS VPC 
+
 ↓
 Public Subnet 
+
 ↓
 EC2 Instance
+
 ↓
 Apache Web Server
+
 ↓
 Web Page
 
