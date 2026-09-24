@@ -1,12 +1,12 @@
 # AWS-Infrastructure-Automation-using-Terraform
 
-**Overview**
+**OVERVIEW**
 
 This project uses Terraform to automate the creation and configuration of AWS infrastructure.
 
 Instead of creating AWS resources manually through the AWS Console, Terraform is used to deploy the infrastructure as code. The project provisions a VPC, public subnet, Internet Gateway, route table, security group, IAM role, and EC2 instance, with an Apache web server configured automatically.
 
-**AWS Resources**
+**AWS RESOURCES**
 
 The project creates:
 
@@ -28,11 +28,11 @@ AWS Systems Manager (SSM) – Allows secure EC2 management
 
 Apache – Hosts the web page
 
-**Technologies Used**
+**TECHNOLOGIES USED**
 
 AWS | Terraform | Linux | Apache
 
-**How It Works**
+**HOW IT WORKS**
 
 Terraform
     ↓
@@ -48,7 +48,7 @@ Web Page
 
 The EC2 instance is managed using AWS Systems Manager instead of SSH.
 
-**Deployment**
+**DEPLOYMENT**
 
 Run the following commands:
 
@@ -62,7 +62,7 @@ Run the following commands:
 
 Terraform then creates the required AWS resources automatically.
 
-**Result**
+**RESULT**
 
 The EC2 instance runs an Apache web server with the following page:
 
@@ -70,7 +70,7 @@ Hello from Terraform
 
 The infrastructure can be verified through the AWS Management Console, and the EC2 instance can be managed using AWS Systems Manager Session Manager.
 
-**What I Learned**
+**WHAT I LEARNED**
 
 - Terraform Infrastructure as Code
 
@@ -86,7 +86,7 @@ The infrastructure can be verified through the AWS Management Console, and the E
 
 - AWS infrastructure automation
 
-**Cleanup**
+**CLEANUP**
 
 To remove the AWS resources:
 
