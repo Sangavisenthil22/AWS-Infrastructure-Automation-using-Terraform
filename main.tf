@@ -47,6 +47,7 @@ resource "aws_security_group" "web" {
   vpc_id = aws_vpc.main.id
 
   ingress {
+    description = "HTTP"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -59,6 +60,10 @@ resource "aws_security_group" "web" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+    Name = "terraform-web-sg"
+  }
 }
 
 resource "aws_iam_role" "ssm" {
@@ -66,11 +71,14 @@ resource "aws_iam_role" "ssm" {
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
+
     Statement = [{
       Effect = "Allow"
+
       Principal = {
         Service = "ec2.amazonaws.com"
       }
+
       Action = "sts:AssumeRole"
     }]
   })
@@ -87,18 +95,25 @@ resource "aws_iam_instance_profile" "ssm" {
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-0c02fb55956c7d316"
+  ami           = data.aws_ami.amazon_linux.id
   instance_type = "t3.micro"
 
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.web.id]
-  iam_instance_profile   = aws_iam_instance_profile.ssm.name
+
+  iam_instance_profile = aws_iam_instance_profile.ssm.name
 
   user_data = <<-EOF
               #!/bin/bash
+
               dnf install -y httpd
+
               systemctl enable httpd
               systemctl start httpd
+
+              systemctl enable amazon-ssm-agent
+              systemctl start amazon-ssm-agent
+
               echo "Hello from Terraform" > /var/www/html/index.html
               EOF
 
