@@ -33,17 +33,16 @@ Apache – Hosts the web page
 AWS | Terraform | Linux | Apache
 
 **HOW IT WORKS**
-
 Terraform
-    --
+    >
 AWS VPC  
-    --
+    >
 Public Subnet
-    --
+    >
 EC2 Instance 
-    --
+    >
 Apache Web Server  
-    --
+    >
 Web Page
 
 The EC2 instance is managed using AWS Systems Manager instead of SSH.
